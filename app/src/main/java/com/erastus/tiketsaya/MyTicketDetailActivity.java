@@ -57,9 +57,6 @@ public class MyTicketDetailActivity extends AppCompatActivity {
             }
         });
 
-        btnBack.setOnClickListener(v -> {
-            Intent goProfile = new Intent(MyTicketDetailActivity.this, ProfileActivity.class);
-            startActivity(goProfile);
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
     }
 }

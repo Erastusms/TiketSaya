@@ -34,10 +34,7 @@ public class RegisterOneActivity extends AppCompatActivity {
         email_address = findViewById(R.id.email_address);
 
         ImageButton btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
-            Intent goSignin = new Intent(RegisterOneActivity.this, SignInActivity.class);
-            startActivity(goSignin);
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
 
         Button btnContinue = findViewById(R.id.btn_buy_ticket);
         btnContinue.setOnClickListener(v -> {

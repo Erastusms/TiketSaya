@@ -73,10 +73,7 @@ public class TicketDetailActivity extends AppCompatActivity {
         });
 
         ImageButton btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
-            Intent goBack = new Intent(TicketDetailActivity.this, HomeActivity.class);
-            startActivity(goBack);
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
 
         Button btnBuy = findViewById(R.id.btn_buy_ticket);
         btnBuy.setOnClickListener(v -> {

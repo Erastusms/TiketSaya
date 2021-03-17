@@ -159,10 +159,7 @@ public class TicketCheckoutActivity extends AppCompatActivity {
         });
 
         ImageButton btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
-            Intent goBack = new Intent(TicketCheckoutActivity.this, TicketDetailActivity.class);
-            startActivity(goBack);
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
 
         btnBuy.setOnClickListener(v -> {
             // Menyimpan data ke tabel baru bernama MyTickets

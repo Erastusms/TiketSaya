@@ -42,10 +42,12 @@ public class SuccessCheckoutActivity extends AppCompatActivity {
         btnViewTicket.setOnClickListener(v -> {
             Intent goProfile = new Intent(SuccessCheckoutActivity.this, ProfileActivity.class);
             startActivity(goProfile);
+            finish();
         });
         btnHome.setOnClickListener(v -> {
             Intent goHome = new Intent(SuccessCheckoutActivity.this, HomeActivity.class);
             startActivity(goHome);
+            finish();
         });
     }
 }

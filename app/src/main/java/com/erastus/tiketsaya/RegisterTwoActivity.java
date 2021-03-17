@@ -87,10 +87,7 @@ public class RegisterTwoActivity extends AppCompatActivity {
             }
         });
 
-        btnBack.setOnClickListener(v -> {
-            Intent goBack = new Intent(RegisterTwoActivity.this, RegisterOneActivity.class);
-            startActivity(goBack);
-        });
+        btnBack.setOnClickListener(v -> onBackPressed());
     }
 
     // Digunakan untuk menyimpan file foto bertipe url kepada firebase

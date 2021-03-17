@@ -24,7 +24,7 @@ import java.util.ArrayList;
 public class ProfileActivity extends AppCompatActivity {
 
     TextView namaLengkap, bio;
-    ImageView fotoProfil;
+    ImageView fotoProfil, btnBack;
 
     DatabaseReference reference, referenceTickets;
 
@@ -33,7 +33,7 @@ public class ProfileActivity extends AppCompatActivity {
     String username_key_new = "";
 
     RecyclerView rvMyTicket;
-    ArrayList<MyTicket> listTickets = new ArrayList<MyTicket>();
+    ArrayList<MyTicket> listTickets = new ArrayList<>();
     TicketAdapter adapter;
 
     @Override
@@ -70,11 +70,8 @@ public class ProfileActivity extends AppCompatActivity {
             }
         });
 
-        ImageView btnBack = findViewById(R.id.btn_back);
-        btnBack.setOnClickListener(v -> {
-            Intent goBack = new Intent(ProfileActivity.this, HomeActivity.class);
-            startActivity(goBack);
-        });
+        btnBack = findViewById(R.id.btn_back);
+        btnBack.setOnClickListener(v -> onBackPressed());
 
         Button btnEditProfile = findViewById(R.id.btn_edt_profile);
         btnEditProfile.setOnClickListener(v -> {

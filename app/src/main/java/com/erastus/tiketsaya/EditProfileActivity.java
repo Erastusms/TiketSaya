@@ -12,6 +12,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -28,6 +29,7 @@ public class EditProfileActivity extends AppCompatActivity {
 
     TextView namaLengkap, bio, username, password, email;
     ImageView photoUser;
+    ImageButton btnBack;
     Button btnSave, btnAddPhoto;
 
     String USERNAME_KEY = "usernamekey";
@@ -54,6 +56,7 @@ public class EditProfileActivity extends AppCompatActivity {
         email = findViewById(R.id.edt_email);
         photoUser = findViewById(R.id.photo_edit_profile);
         btnSave = findViewById(R.id.btn_save);
+        btnBack = findViewById(R.id.btn_back);
         btnAddPhoto = findViewById(R.id.btn_addphoto);
 
         reference = FirebaseDatabase.getInstance().getReference()
@@ -122,6 +125,7 @@ public class EditProfileActivity extends AppCompatActivity {
             }
         });
 
+        btnBack.setOnClickListener(v -> onBackPressed());
 
     }
 

@@ -37,6 +37,7 @@ public class SuccesRegisterActivity extends AppCompatActivity {
         btnExplore.setOnClickListener(v -> {
             Intent goHome = new Intent(SuccesRegisterActivity.this, HomeActivity.class);
             startActivity(goHome);
+            finish();
         });
     }
 }

@@ -35,11 +35,13 @@ public class MainActivity extends AppCompatActivity {
         btnSignin.setOnClickListener(v -> {
             Intent goSignIn = new Intent(MainActivity.this, SignInActivity.class);
             startActivity(goSignIn);
+            finish();
         });
 
         btnSignUp.setOnClickListener(v -> {
             Intent goSignUp = new Intent(MainActivity.this, RegisterOneActivity.class);
             startActivity(goSignUp);
+            finish();
         });
     }
 }
