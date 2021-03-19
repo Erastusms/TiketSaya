@@ -57,8 +57,7 @@
 
             <ImageView
                 android:id="@+id/photo_home_user"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                style="@style/photo_user"
                 tools:srcCompat="@drawable/icon_nopic" />
 
         </com.github.florent37.shapeofview.shapes.CircleView>
