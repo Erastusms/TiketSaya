@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -19,7 +20,7 @@ import com.google.firebase.database.ValueEventListener;
 public class RegisterOneActivity extends AppCompatActivity {
 
     EditText username, password, email_address;
-    DatabaseReference reference;
+    DatabaseReference reference, referenceUsername;
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -39,22 +40,42 @@ public class RegisterOneActivity extends AppCompatActivity {
         Button btnContinue = findViewById(R.id.btn_buy_ticket);
         btnContinue.setOnClickListener(v -> {
 
-            // Menyimpan data kepada local storage
-            SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
-            SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putString(username_key, username.getText().toString());
-            editor.apply();
-
-            // Simpan kepada firebase
-            reference = FirebaseDatabase.getInstance().getReference()
+            // Mengecek username pada firebase
+            referenceUsername = FirebaseDatabase.getInstance().getReference()
                     .child("Users").child(username.getText().toString());
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            referenceUsername.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    dataSnapshot.getRef().child("username").setValue(username.getText().toString());
-                    dataSnapshot.getRef().child("password").setValue(password.getText().toString());
-                    dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
-                    dataSnapshot.getRef().child("user_balance").setValue(800);
+                    if (dataSnapshot.exists()) {
+                        Toast.makeText(getApplicationContext(), "Username sudah digunakan!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Menyimpan data kepada local storage
+                        SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putString(username_key, username.getText().toString());
+                        editor.apply();
+
+                        // Simpan kepada firebase
+                        reference = FirebaseDatabase.getInstance().getReference()
+                                .child("Users").child(username.getText().toString());
+                        reference.addListenerForSingleValueEvent(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                dataSnapshot.getRef().child("username").setValue(username.getText().toString());
+                                dataSnapshot.getRef().child("password").setValue(password.getText().toString());
+                                dataSnapshot.getRef().child("email_address").setValue(email_address.getText().toString());
+                                dataSnapshot.getRef().child("user_balance").setValue(800);
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError error) {
+
+                            }
+                        });
+
+                        Intent goNext = new Intent(RegisterOneActivity.this, RegisterTwoActivity.class);
+                        startActivity(goNext);
+                    }
                 }
 
                 @Override
@@ -62,9 +83,6 @@ public class RegisterOneActivity extends AppCompatActivity {
 
                 }
             });
-
-            Intent goNext = new Intent(RegisterOneActivity.this, RegisterTwoActivity.class);
-            startActivity(goNext);
         });
     }
 }

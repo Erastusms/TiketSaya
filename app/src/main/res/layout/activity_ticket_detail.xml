@@ -19,15 +19,8 @@
 
     <Button
         android:id="@+id/btn_buy_ticket"
-        android:layout_width="0dp"
-        android:layout_height="55dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginEnd="24dp"
-        android:background="@drawable/bg_btn_blue_primary"
-        android:fontFamily="@font/mmedium"
+        style="@style/margin_btn_blue_primary"
         android:text="@string/buy_ticket"
-        android:textColor="@color/white"
-        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/btn_back"
         app:layout_constraintTop_toTopOf="@+id/btn_back" />
